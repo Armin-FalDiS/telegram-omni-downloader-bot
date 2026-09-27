@@ -24,7 +24,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV PYTHONUNBUFFERED=1 \
-    DATABASE_PATH=/data/bot.db \
     TELEGRAM_API_URL=http://127.0.0.1:8081
 
 VOLUME /data

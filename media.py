@@ -31,10 +31,14 @@ class MediaFile:
 
 
 class Downloader:
-    def __init__(self, cookies_file: str | None):
-        self._params = {"quiet": True, "no_warnings": True, "noprogress": True, "noplaylist": True}
-        if cookies_file:
-            self._params["cookiefile"] = cookies_file
+    def __init__(self, cookies_file: str):
+        self._params = {
+            "quiet": True,
+            "no_warnings": True,
+            "noprogress": True,
+            "noplaylist": True,
+            "cookiefile": cookies_file,
+        }
 
     async def video_options(self, url: str) -> list[VideoOption]:
         info = await asyncio.to_thread(self._extract, url)

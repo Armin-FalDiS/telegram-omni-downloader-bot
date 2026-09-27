@@ -13,7 +13,7 @@ from telegram.error import BadRequest, NetworkError, RetryAfter, TimedOut
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes, MessageHandler, filters
 
 from access import AccessList, Member
-from config import MEGABYTE, Config, load_config
+from config import COOKIES_PATH, DATABASE_PATH, MEGABYTE, Config, load_config
 from links import LinkKind, classify, normalize
 from media import Downloader, MediaFile, VideoOption
 
@@ -41,8 +41,8 @@ class PendingChoice:
 class OmniBot:
     def __init__(self, config: Config):
         self._config = config
-        self._access = AccessList(config.database_path, config.admin_id)
-        self._downloader = Downloader(config.cookies_file)
+        self._access = AccessList(DATABASE_PATH, config.admin_id)
+        self._downloader = Downloader(COOKIES_PATH)
         self._pending: dict[str, PendingChoice] = {}
 
     def build(self) -> Application:
